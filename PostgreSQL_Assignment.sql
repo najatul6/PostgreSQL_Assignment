@@ -99,3 +99,11 @@ JOIN species  sp ON si.species_id  = sp.species_id
 JOIN rangers  r  ON si.ranger_id   = r.ranger_id
 ORDER BY si.sighting_time DESC
 LIMIT 2;
+
+-- ============================================================
+-- Update all species discovered before year 1800 to status 'Historic'
+-- ============================================================
+ 
+UPDATE species
+SET conservation_status = 'Historic'
+WHERE EXTRACT(YEAR FROM discovery_date) < 1800;
