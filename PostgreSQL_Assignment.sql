@@ -78,3 +78,13 @@ FROM rangers r
 LEFT JOIN sightings s ON r.ranger_id = s.ranger_id
 GROUP BY r.name
 ORDER BY r.name;
+
+-- ============================================================
+-- List species that have never been sighted
+-- ============================================================
+ 
+SELECT common_name
+FROM species
+WHERE species_id NOT IN (
+    SELECT DISTINCT species_id FROM sightings
+);
